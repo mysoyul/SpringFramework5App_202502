@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- Component Auto Scanning 설정 -->
+	<context:component-scan base-package="myspring.di.annot" />
+		
+	<!-- StringPrinter 클래스를 Bean으로 설정 -->
+	<bean id="strPrinter" class="myspring.di.xml.StringPrinter" />
+	
+	<!-- ConsolePrinter 클래스를 Bean으로 설정 -->
+	<bean id="conPrinter" class="myspring.di.xml.ConsolePrinter" />
+	
+	<!-- Hello 클래스를 Bean으로 설정 -->	
+	<!--  scope : singleton(디폴트)|prototype|request|session -->
+	<bean id="hello" class="myspring.di.xml.Hello" scope="singleton">
+		<!-- Setter Injection 설정 -->
+		<property name="name" value="스프링" />
+		<property name="printer" ref="strPrinter" />
+	</bean>	
+	
+	<bean id="helloC" class="myspring.di.xml.Hello">
+		<!-- Constructor Injection 설정 --> 
+		<constructor-arg name="name" value="생성자" />
+		<constructor-arg name="printer" ref="conPrinter" />
+		<property name="names">
+			<list>
+				<value>Java</value>
+				<value>Python</value>
+				<value>JavaScript</value>
+			</list>
+		</property>
+	</bean>
+	
+</beans>
