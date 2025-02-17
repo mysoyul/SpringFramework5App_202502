@@ -7,6 +7,7 @@ public class StringPrinter implements Printer {
 		this.buffer.append(message);
 	}
 
+	@Override
 	public String toString() {
 		return this.buffer.toString();
 	}
