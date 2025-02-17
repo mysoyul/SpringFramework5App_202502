@@ -21,7 +21,7 @@
 	<!--  scope : singleton(디폴트)|prototype|request|session -->
 	<bean id="hello" class="myspring.di.xml.Hello" scope="singleton">
 		<!-- Setter Injection 설정 -->
-		<property name="name" value="스프링" />
+		<property name="name" value="${myName1}" /> 
 		<property name="printer" ref="strPrinter" />
 	</bean>	
 	

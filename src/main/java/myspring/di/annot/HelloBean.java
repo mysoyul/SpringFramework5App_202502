@@ -16,6 +16,10 @@ import org.springframework.stereotype.Component;
 
 @Component //helloBean
 public class HelloBean {
+	/* 
+	 * Value("${myName}") 사용할때  
+	 * property key를 반드시 정확하게 일치시켜 주어야 합니다.
+	*/ 	
 	@Value("${myName}")
 	String name;
 	
