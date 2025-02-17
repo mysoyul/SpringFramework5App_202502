@@ -6,7 +6,7 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 	
 	<!-- properties 파일정보 설정 -->
-	<context:property-placeholder location="classpath:spring_hello.xml" />
+	<context:property-placeholder location="classpath:values.properties" />
 	
 	<!-- Component Auto Scanning 설정 -->
 	<context:component-scan base-package="myspring.di.annot" />
