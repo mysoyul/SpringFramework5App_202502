@@ -12,10 +12,11 @@ import myspring.user.vo.UserVO;
 @Service("userService")
 public class UserServiceImpl implements UserService {
 
-	@Autowired
+//	@Autowired
 	UserDao userdao;
-	
-	public void setUserdao(UserDao userdao) {
+
+	//Constructor Injection
+	public UserServiceImpl(UserDao userdao) {
 		this.userdao = userdao;
 	}
 

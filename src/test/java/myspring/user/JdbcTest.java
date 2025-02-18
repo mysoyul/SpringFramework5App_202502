@@ -14,7 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import myspring.user.dao.UserDao;
 import myspring.user.dao.mapper.UserMapper;
+import myspring.user.service.UserService;
 import myspring.user.vo.UserVO;
 
 @ExtendWith(SpringExtension.class)
@@ -32,7 +34,25 @@ public class JdbcTest {
 	@Autowired
 	UserMapper userMapper;
 	
+	@Autowired
+	UserDao userDao;
+	
+	@Autowired
+	UserService userService;
+	
 	@Test
+	void userSvc() {
+		UserVO user = userService.getUser("dooly");
+		System.out.println(user);
+	}
+	
+	@Test @Disabled
+	void userDao() {
+		UserVO user = userDao.read("dooly");
+		System.out.println(user);				
+	}
+	
+	@Test @Disabled
 	void userMapper() {
 		UserVO user = userMapper.selectUserById("dooly");
 		System.out.println(user);
@@ -46,7 +66,7 @@ public class JdbcTest {
 		System.out.println(user);		
 	}
 	
-	@Test
+	@Test @Disabled
 	void conn() throws Exception{
 		Connection connection = dataSource.getConnection();
 		DatabaseMetaData metaData = connection.getMetaData();
