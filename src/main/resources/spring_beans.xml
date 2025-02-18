@@ -6,14 +6,36 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-	<context:property-placeholder location="classpath:values.properties" />
-	
+	<context:property-placeholder
+		location="classpath:values.properties" />
+
 	<!-- HikariDataSource 클래스 Spring Bean으로 설정 -->
 	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource"
-		p:jdbcUrl="${db.url}"
-		p:driverClassName="${db.driverClass}"
-		p:username="${db.username}"
-		p:password="${db.password}"
-	 />
-	 
+		p:jdbcUrl="${db.url}" p:driverClassName="${db.driverClass}"
+		p:username="${db.username}" p:password="${db.password}" />
+
+	<!-- SqlSessionFactoryBean 클래스 Spring Bean으로 설정 -->
+	<bean id="sqlSessionFactory"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation"
+			value="classpath:mybatis/SqlMapConfig.xml" />
+		<property name="mapperLocations">
+			<list>
+				<value>classpath:mybatis/*Mapper.xml</value>
+			</list>
+		</property>
+	</bean>
+	<!-- SqlSessionTemplate 클래스 Spring Bean으로 설정 -->
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactory" />
+	</bean>
+	
+	<!-- MapperScannerConfigurer 클래스 Spring Bean으로 설정  -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="myspring.**.dao.mapper"/>
+		<property name="sqlSessionTemplateBeanName" value="sqlSession" /> 
+	</bean>
+	
+
 </beans>
