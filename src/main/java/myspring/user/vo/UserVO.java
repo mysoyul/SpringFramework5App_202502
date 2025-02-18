@@ -10,9 +10,6 @@ public class UserVO {
 
 	public UserVO() {}
 	
-
-
-
 	public UserVO(String userId, String name, String gender, String city) {
 		this.userId = userId;
 		this.name = name;

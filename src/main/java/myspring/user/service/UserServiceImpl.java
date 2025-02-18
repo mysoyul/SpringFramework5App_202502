@@ -11,7 +11,6 @@ import myspring.user.vo.UserVO;
 
 @Service("userService")
 public class UserServiceImpl implements UserService {
-
 //	@Autowired
 	UserDao userdao;
 
