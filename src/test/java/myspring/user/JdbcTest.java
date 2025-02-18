@@ -45,17 +45,20 @@ public class JdbcTest {
 	@Autowired
 	StudentDao studentDao;
 	
-	@Test
+	@Test @Disabled
 	void stuDao() {
 		StudentVO student = studentDao.selectStudentByCode(1002);
 		System.out.println(student);
 	}
-	
-	
-	@Test @Disabled
+		
+	@Test //@Disabled
 	void userSvc() {
+		//조회
 		UserVO user = userService.getUser("dooly");
 		System.out.println(user);
+		//업데이트
+		user.setGender("남");
+		userService.updateUser(user);
 	}
 	
 	@Test @Disabled

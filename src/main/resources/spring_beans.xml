@@ -4,9 +4,40 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:p="http://www.springframework.org/schema/p"
 	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
-		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+	
+	<!-- Transaction Manager 설정 -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<!-- Transaction Advice 설정 -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="get*" read-only="true"/>
+			
+			<!--No existing transaction found for transaction marked with propagation 'mandatory'-->
+<!-- 			<tx:method name="deleteUser" propagation="NOT_SUPPORTED"/> -->
+<!-- 			<tx:method name="delete" propagation="MANDATORY"/> -->
+			
+			<!-- 예외=Existing transaction found for transaction marked with propagation 'never' -->
+			<!-- updateUser(): Service, update(): Dao  -->
+			<tx:method name="updateUser" propagation="NOT_SUPPORTED"/>
+<!-- 			<tx:method name="update" propagation="REQUIRED" /> -->
+		<tx:method name="update" propagation="MANDATORY" />
+		</tx:attributes>
+	</tx:advice>
+	
+	<!-- Advisor 설정 : Transaction Advice를 어떤 Target에 적용할지를 설정함  -->
+	<aop:config>
+		<aop:pointcut expression="execution(public * myspring.**..*(..))" id="txPointCut"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointCut"/>
+	</aop:config>
+	
 	
 	<!-- @Aspect가 선언된 모든 Spring Bean을 Aspect로 자동 등록해줌 -->
 	<aop:aspectj-autoproxy />

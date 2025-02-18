@@ -47,7 +47,7 @@ public class LoggingAspect {
 	}
     
    //후처리 어드바이스 (정상,오류)
-    @After("execution(* *..*.*User(..))")
+    @After("execution(public * myspring..*(..))")
 	public void afterFinally(JoinPoint joinPoint) {
 		String signatureString = joinPoint.getSignature().getName();
 		logger.debug("@After [ " + signatureString + " ] 메서드 실행 완료");
