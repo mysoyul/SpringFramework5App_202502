@@ -61,8 +61,9 @@
 <!-- 		base-package="myspring.**.dao,myspring.**.service"> -->
 	<context:component-scan 
 		base-package="myspring.user,myspring.student">		
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
-<!-- 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/> -->
 	</context:component-scan>	
 	<context:component-scan base-package="myspring.aop.annot" />	
 

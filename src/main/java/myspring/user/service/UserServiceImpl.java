@@ -4,12 +4,14 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import myspring.user.dao.UserDao;
 import myspring.user.vo.UserVO;
 
 @Service("userService")
+@Scope("singleton")
 public class UserServiceImpl implements UserService {
 //	@Autowired
 	UserDao userdao;

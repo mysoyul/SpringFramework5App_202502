@@ -3,12 +3,14 @@ package myspring.user.dao;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;
 
 import myspring.user.dao.mapper.UserMapper;
 import myspring.user.vo.UserVO;
 
 @Repository("userDao")
+@Scope("singleton")
 public class UserDaoImplMapper implements UserDao {
 	//@Autowired
 	private UserMapper userMapper;
