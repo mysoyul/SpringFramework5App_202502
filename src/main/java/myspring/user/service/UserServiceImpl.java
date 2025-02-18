@@ -18,7 +18,7 @@ public class UserServiceImpl implements UserService {
 
 	//Constructor Injection
 	public UserServiceImpl(UserDao userdao) {
-		System.out.println(">>Service 레이어 = " + this.getClass().getName() + " 생성자 호출됨!!");
+		System.out.println("////Service 레이어 = " + this.getClass().getName() + " 생성자 호출됨!!");
 		this.userdao = userdao;
 	}
 

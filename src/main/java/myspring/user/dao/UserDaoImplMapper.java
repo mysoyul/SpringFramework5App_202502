@@ -16,7 +16,7 @@ public class UserDaoImplMapper implements UserDao {
 	private UserMapper userMapper;
 	
 	public UserDaoImplMapper(UserMapper userMapper) {
-		System.out.println(">>DataAccess 레이어 = " + this.getClass().getName() + " 생성자 호출됨!!");
+		System.out.println("////DataAccess 레이어 = " + this.getClass().getName() + " 생성자 호출됨!!");
 		this.userMapper = userMapper;
 	}
 
