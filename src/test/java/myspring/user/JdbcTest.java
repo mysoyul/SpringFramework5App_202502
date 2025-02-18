@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import myspring.student.dao.StudentDao;
+import myspring.student.vo.StudentVO;
 import myspring.user.dao.UserDao;
 import myspring.user.dao.mapper.UserMapper;
 import myspring.user.service.UserService;
@@ -40,7 +42,17 @@ public class JdbcTest {
 	@Autowired
 	UserService userService;
 	
+	@Autowired
+	StudentDao studentDao;
+	
 	@Test
+	void stuDao() {
+		StudentVO student = studentDao.selectStudentByCode(1002);
+		System.out.println(student);
+	}
+	
+	
+	@Test @Disabled
 	void userSvc() {
 		UserVO user = userService.getUser("dooly");
 		System.out.println(user);
