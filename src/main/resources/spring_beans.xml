@@ -57,8 +57,13 @@
 	<!-- Advice 클래스를 Bean으로 등록 -->
 	<bean id="performanceTraceAdvice" class="myspring.aop.xml.PerformanceTraceAdvice" />	
 	
+<!-- 	<context:component-scan  -->
+<!-- 		base-package="myspring.**.dao,myspring.**.service"> -->
 	<context:component-scan 
-		base-package="myspring.**.dao,myspring.**.service" />
+		base-package="myspring.user,myspring.student">		
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+<!-- 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/> -->
+	</context:component-scan>	
 	<context:component-scan base-package="myspring.aop.annot" />	
 
 	<context:property-placeholder

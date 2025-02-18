@@ -10,9 +10,14 @@ import myspring.user.vo.UserVO;
 
 @Repository("userDao")
 public class UserDaoImplMapper implements UserDao {
-	@Autowired
-	private UserMapper userMapper;	
+	//@Autowired
+	private UserMapper userMapper;
 	
+	public UserDaoImplMapper(UserMapper userMapper) {
+		System.out.println(">>DataAccess 레이어 = " + this.getClass().getName() + " 생성자 호출됨!!");
+		this.userMapper = userMapper;
+	}
+
 	@Override
 	public UserVO read(String id) {
 		UserVO user  = userMapper.selectUserById(id);
